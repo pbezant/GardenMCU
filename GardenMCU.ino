@@ -68,7 +68,7 @@ void setup()
   
   setup_ota();
   
-  webServer_setup();
+//  webServer_setup();
   setup_dht(TEMP);
   setup_multiplexer();
 
@@ -78,7 +78,7 @@ void setup()
 void loop()
 {
   loop_ota();
-  webServer_loop();
+ // webServer_loop();
   digitalWrite(LED, LOW);
   
   //sensor readings
