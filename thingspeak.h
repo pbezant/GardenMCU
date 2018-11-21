@@ -1,8 +1,8 @@
-const char* thingspeak_server = "api.thingspeak.com";
-const char* api_key = "CZ4QYCRKVM2BBHK8";
+#include <WiFiClient.h>
 
-void postData(float temperatureF, float temperatureC, float humidity, float heatIndex, float light){
+void postData(float temperatureF, float temperatureC, float humidity, float heatIndex, float light, float groundMoisture, float tmp36_tempF){
   // Send data to ThingSpeak
+  
   if (client.connect(thingspeak_server,80)) {
   Serial.println("Connect to ThingSpeak - OK"); 
 
@@ -12,7 +12,6 @@ void postData(float temperatureF, float temperatureC, float humidity, float heat
    
   dataToThingSpeak+="&field1=";
   dataToThingSpeak+=String(temperatureF);
-
   
   dataToThingSpeak+="&field2=";
   dataToThingSpeak+=String(temperatureC);
@@ -25,6 +24,12 @@ void postData(float temperatureF, float temperatureC, float humidity, float heat
 
   dataToThingSpeak+="&field5=";
   dataToThingSpeak+=String(light);
+
+  dataToThingSpeak+="&field6=";
+  dataToThingSpeak+=String(groundMoisture);
+
+  dataToThingSpeak+="&field7=";
+  dataToThingSpeak+=String(tmp36_tempF);
    
   dataToThingSpeak+=" HTTP/1.1\r\nHost: a.c.d\r\nConnection: close\r\n\r\n";
   dataToThingSpeak+="";
