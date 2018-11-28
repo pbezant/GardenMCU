@@ -2,6 +2,7 @@
 
 void postData(float temperatureF, float temperatureC, float humidity, float heatIndex, float light, float groundMoisture, float tmp36_tempF){
   // Send data to ThingSpeak
+  WiFiClient client;
   
   if (client.connect(thingspeak_server,80)) {
   Serial.println("Connect to ThingSpeak - OK"); 

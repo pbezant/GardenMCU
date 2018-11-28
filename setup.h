@@ -8,7 +8,7 @@ const float volt_3 = 3.3;
 const int volt_5 = 5;
 
 // Measurement interval (minutes)
-const float interval = 5;
+const float interval = 1;
 //const float interval = 0.1;
 
 //wifi settings

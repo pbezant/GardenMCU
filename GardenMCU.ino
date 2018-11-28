@@ -1,4 +1,4 @@
-#include "setup.h"
+#include "Setup.h"
 
 #include <FirmataDefines.h>
 #include <FirmataConstants.h>
@@ -14,28 +14,25 @@
 #include <ESP8266mDNS.h>
 #include <WiFiUdp.h>
 
-WiFiClient client;
-ESP8266WebServer server(80);
-
 //wifimanager
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 //#include <DNSServer.h> 
+#include <DHTesp.h> //dht11
 
-#include "sensors.h"
+#include "Sensors.h"
+#include "OTA.h"
+#include "Thingspeak.h"
 
-//dht11
-#include <DHTesp.h>
-DHTesp dht;
 #define TEMP D4
 
-#include "OTA.h"
+DHTesp dht;
 OTA ota(server_name);
+WiFiClient client;
+ESP8266WebServer server(80);
 
 //spiffs
 // #include "spiffs.h"
 // spiffs spiff(server_name);
-
-#include "thingspeak.h"
 
 void setup_WifiManager() {
   const char* hostname = server_name.c_str();
@@ -102,7 +99,9 @@ void setup(){
   //sensor readings
   //digitalWrite(LED, HIGH);
   
-  tmp36_read();
+  read_tmp36();
+  read_lightSensor();
+  read_GroundMoisture();
 
   //DHT11 Temp/Humidity
 

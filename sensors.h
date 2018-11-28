@@ -11,11 +11,10 @@ MCP3008 adc(CLOCK_PIN, MOSI_PIN, MISO_PIN, CS_PIN);
 float tmp36_tempF;
 float tmp36_tempC;
 
-void tmp36_read()
+void read_tmp36()
 {
     //tmp36 temp sensor
     int tmp36Value = adc.readADC(0);
-    //int tempValue = adc.readADC(0);
     Serial.print("tmp36 value: ");
     Serial.println(tmp36Value);
     // converting that reading to voltage, for 3.3v arduino use 3.3
@@ -55,7 +54,7 @@ void read_lightSensor()
 
  //ground moistor
 float groundMoisture;
- void read_GroundMoisture(){
+void read_GroundMoisture(){
   int groundMoistureValue = adc.readADC(3);
   Serial.print("Ground Moisture\t");
   Serial.println(groundMoistureValue);
